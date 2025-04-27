@@ -1,16 +1,7 @@
 /* ****************************************************************
- * @author: <your name here>
- * @app name: <your application name here>
- * @app desc: <describe the purpose of your application here>
- * @history:
- *  - <yyyy/mm/dd> | <name>
- *      -- <description>
- *      -- <description>
- *      -- <description>
- *  - <yyyy/mm/dd> | <name>
- *      -- <description>
- *      -- <description>
- *      -- <description>
+ * @author: Jephthah M. Orobia
+ * @app name: Stacks Implementation and Testing
+ * @app desc: Write a class Stack implemented as describe in README.md
  * ****************************************************************/
 
 #include <cstdio>
