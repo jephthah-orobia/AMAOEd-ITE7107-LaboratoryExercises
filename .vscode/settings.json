@@ -3,6 +3,10 @@
         "iostream": "cpp",
         "cstdlib": "cpp",
         "ostream": "cpp",
-        "exception": "cpp"
+        "exception": "cpp",
+        "xstring": "cpp",
+        "queue": "cpp",
+        "stack": "cpp",
+        "xutility": "cpp"
     }
 }

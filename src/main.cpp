@@ -7,30 +7,35 @@
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
-#include <limits>
+#include <string>
+#include "stack.h"
 
 using namespace std;
 
-//////////////////////////////////////////////////////////////////
-//                               NOTE
-// This is your program entry point. Your main logic is placed
-// inside this function. You may add your functions before this
-// "main()", or after this "main()" provided you added reference
-// before this "main()" function.
-//////////////////////////////////////////////////////////////////
+template <typename T>
+void display_elements(Stack<T> *list)
+{
+  list->begin();
+  while (!list->next_is_empty())
+  {
+    cout << list->next() << "\t";
+  }
+  cout << endl;
+}
 
 int main()
 {
-  // ************************** TO DO **************************
-  // Place your code logic after this comment line
-  // ***********************************************************
-  char c;
-  cout << "Hello World!" << endl;
+  Stack<string> *stack = new Stack<string>();
+  string input;
+  do
+  {
+    system("clear");
+    display_elements(stack);
+    cout << endl << "Add an element or input `quit` to terminate program: ";
+    getline(cin, input);
+    stack->push(input);
 
-  // ********************** DO NOT CHANGE **********************
-  // Print a new line and ask user for any key before exiting
-  // ***********************************************************
-  cin >> c;
-  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+  } while (input != "quit");
+
   return EXIT_SUCCESS;
 }
