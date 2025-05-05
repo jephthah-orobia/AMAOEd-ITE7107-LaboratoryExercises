@@ -56,7 +56,7 @@ public:
 		}
 	}
 
-	
+
 	bool is_empty()
 	{
 		return top == nullptr;
@@ -79,7 +79,7 @@ public Object pop() throws EmptyStackException {
 		T poppedData = temp->data; // Get the data of the top node
 		top = top->next;		   // Move the top pointer to the next node
 		delete temp;			   // Free the memory of the old top node
-		this->count--;
+		this->count--;			   // update count
 		return poppedData; // Return the popped data
 	}
 
@@ -96,7 +96,7 @@ public void push(Object ob) {
 		newNode->data = ob;			// Set the data
 		newNode->next = top;		// Link the new node to the current top
 		top = newNode;				// Update the top pointer
-		this->count++;
+		this->count++;				// update count
 	}
 
 	/**
