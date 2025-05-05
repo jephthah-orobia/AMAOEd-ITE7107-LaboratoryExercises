@@ -19,16 +19,17 @@ class Stack
 private:
 	struct Node
 	{
-		T data; // Pointer to store any type of data
+		T data; // Pointer to store data of type T
 		Node *next;
 	};
 
 	Node *top; // Points to the top of the stack
 
 public:
+	// Task 1: Write the Stack constructor.
 	Stack<T>() : top(nullptr) {}
 
-	// create a copy of `orig` object
+	// @overload creates a copy of `orig` stack
 	Stack<T>(const Stack<T> &orig) : top(nullptr)
 	{
 		Stack reversed;
@@ -37,7 +38,8 @@ public:
 			reversed.push(tmp->data);
 		}
 
-		while(!reversed.is_empty()){
+		while (!reversed.is_empty())
+		{
 			this->push(reversed.pop());
 		}
 	}
@@ -50,7 +52,6 @@ public:
 			pop(); // Free each node
 		}
 	}
-
 
 	bool is_empty()
 	{
@@ -74,7 +75,7 @@ public Object pop() throws EmptyStackException {
 		T poppedData = temp->data; // Get the data of the top node
 		top = top->next;		   // Move the top pointer to the next node
 		delete temp;			   // Free the memory of the old top node
-		return poppedData; // Return the popped data
+		return poppedData;		   // Return the popped data
 	}
 
 	/**
@@ -103,8 +104,8 @@ public static void reverseQ(Queue q) {
 	 */
 	static void reverseQ(std::queue<T> &q)
 	{
-		Stack stack; 
-		
+		Stack stack;
+
 		// Transfer all elements from the q to the stack
 		while (!q.empty())
 		{
