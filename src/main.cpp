@@ -58,16 +58,18 @@ int main()
     cout << "Queue: " << endl;
     display_elements(q);
 
-    /* cout << "Reverse Queue via stack: " << endl;
-    stack.reverseQ(q); // reverse queue via stacks
+    cout << "Reverse Queue via stack: " << endl;
+    Stack<int>::reverseQ(q); // reverse queue via stacks
     display_elements(q);
-    stack.reverseQ(q); // put it back to original order */
 
-    cout << endl << "Enter a NUMBER to add an element or input any non-numeric character to terminate program: ";
+    cout << endl << "Enter an EVEN NUMBER to add to the stack\n\tor an ODD NUMBER to add to the Queue or\n\tinput any NON-NUMERIC character to terminate program: ";
     cin >> input;
-
-    stack.push(input);
-    q.push(input);
+    if(!cin.fail() && input % 2 == 0) // if even
+      stack.push(input);
+    else if(!cin.fail() && input % 2 == 1) // if odd
+      q.push(input);
+    else
+      cout << "*** Terminating Program ***";
   } while (!cin.fail());
 
   return EXIT_SUCCESS;
