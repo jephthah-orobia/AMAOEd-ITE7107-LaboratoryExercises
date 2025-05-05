@@ -15,8 +15,7 @@ public:
 	}
 };
 
-
-template<typename T>
+template <typename T>
 class Stack
 {
 private:
@@ -28,11 +27,28 @@ private:
 
 	Node *top; // Points to the top of the stack
 
-	Node *current = nullptr; // for traversing
+	int count = 0; // to keep count of stacked layers
 
 public:
-	// Constructor
+	// TASK #1. Write the Stack constructor
+
 	Stack<T>() : top(nullptr) {}
+
+	Stack<T>(const Stack<T> &orig) : top(nullptr)
+	{
+		T elements[orig.count];
+		Node *tmp = orig.top;
+		for (int i=orig.count - 1; i >= 0; i--)
+		{
+			elements[i] = tmp->data;
+			tmp = tmp->next;
+		}
+
+		for (int i=0; i<orig.count; i++)
+		{
+			this->push(elements[i]);
+		}
+	}
 
 	// Destructor to clean up memory
 	~Stack()
@@ -43,54 +59,61 @@ public:
 		}
 	}
 
-	bool is_empty(){
+	bool is_empty()
+	{
 		return top == nullptr;
 	}
 
-	
-	void push(T ob)
-	{
-		Node *newNode = new Node(); // Create a new node
-		newNode->data = ob;			// Set the data
-		newNode->next = top;		// Link the new node to the current top
-		top = newNode;				// Update the top pointer
-	}
-
-	/* helper function for traversing the stacks*/
-	bool next_is_empty(){
-		return current == nullptr;
-	}
-
-	/* for traversing the stacks withouth popping any element */
-	void begin(){
-		current = top;
-	}
-	
-	/* call begin() first for traversing the stacks withouth popping any element */
-	T next(){
-		if(next_is_empty())
-			throw EmptyStackException();
-		T temp = current->data;
-		current = current->next;
-		return temp;
-	}
-
+	/**
+	 *  TASK #2. Complete the pop method, using the following header
+```
+public Object pop() throws EmptyStackException {
+}
+```
+	 */
 	T pop()
 	{
 		if (top == nullptr)
 		{
 			throw EmptyStackException();
 		}
-		Node *temp = top;			   // Temporary pointer to the top node
+		Node *temp = top;		   // Temporary pointer to the top node
 		T poppedData = temp->data; // Get the data of the top node
-		top = top->next;			   // Move the top pointer to the next node
-		delete temp;				   // Free the memory of the old top node
-		return poppedData;			   // Return the popped data
+		top = top->next;		   // Move the top pointer to the next node
+		delete temp;			   // Free the memory of the old top node
+		this->count--;
+		return poppedData; // Return the popped data
 	}
 
+	/**
+	 * TASK #3. Complete the push method, using the following header.
+```
+public void push(Object ob) {
+}
+```
+	 */
+	void push(T ob)
+	{
+		Node *newNode = new Node(); // Create a new node
+		newNode->data = ob;			// Set the data
+		newNode->next = top;		// Link the new node to the current top
+		top = newNode;				// Update the top pointer
+		this->count++;
+	}
+
+	/**
+	 * TASK #4. Complete method reverseQ, whose header is given below. Method reverseQ should use a Stack to reverse the order of the items in its Queue parameter.
+```
+public static void reverseQ(Queue q) {
+// precondition: q contains x1 x2 ... xN (with x1 at the front)
+// postcondition: q contains xN ... x2 x1 (with xN at the front)
+}
+```
+	 */
 	void reverseQ(std::queue<T> &q)
 	{
 		Stack stack;
+		int size = q.size(); // ensures only process elements from q and do not touch any elements in stack
 
 		// Transfer all elements from the queue to the stack
 		while (!q.empty())
@@ -100,16 +123,9 @@ public:
 		}
 
 		// Transfer elements back to the queue in reversed order
-		while (true)
+		for (int i = 0; i < size; i++)
 		{
-			try
-			{
-				q.push(stack.pop());
-			}
-			catch (const EmptyStackException & e)
-			{
-				break; // Stack is empty; exit the loop
-			}
+			q.push(stack.pop());
 		}
 	}
 };
