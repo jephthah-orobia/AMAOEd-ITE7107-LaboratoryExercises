@@ -28,10 +28,9 @@ private:
 	int count = 0; // to keep count of stacked layers
 
 public:
-	// TASK #1. Write the Stack constructor
-
 	Stack<T>() : top(nullptr) {}
 
+	// create a copy of `orig` object
 	Stack<T>(const Stack<T> &orig) : top(nullptr)
 	{
 		T elements[orig.count];
@@ -57,6 +56,7 @@ public:
 		}
 	}
 
+	
 	bool is_empty()
 	{
 		return top == nullptr;
