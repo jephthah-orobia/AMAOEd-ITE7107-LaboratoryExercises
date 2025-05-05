@@ -61,6 +61,7 @@ int main()
     cout << "Reverse Queue via stack: " << endl;
     Stack<int>::reverseQ(q); // reverse queue via stacks
     display_elements(q);
+    Stack<int>::reverseQ(q); // put it back
 
     cout << endl << "Enter an EVEN NUMBER to add to the stack\n\tor an ODD NUMBER to add to the Queue or\n\tinput any NON-NUMERIC character to terminate program: ";
     cin >> input;

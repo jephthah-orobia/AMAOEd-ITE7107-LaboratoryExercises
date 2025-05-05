@@ -25,25 +25,20 @@ private:
 
 	Node *top; // Points to the top of the stack
 
-	int count = 0; // to keep count of stacked layers
-
 public:
 	Stack<T>() : top(nullptr) {}
 
 	// create a copy of `orig` object
 	Stack<T>(const Stack<T> &orig) : top(nullptr)
 	{
-		T elements[orig.count];
-		Node *tmp = orig.top;
-		for (int i=orig.count - 1; i >= 0; i--)
+		Stack reversed;
+		for (Node *tmp = orig.top; tmp != nullptr; tmp = tmp->next)
 		{
-			elements[i] = tmp->data;
-			tmp = tmp->next;
+			reversed.push(tmp->data);
 		}
 
-		for (int i=0; i<orig.count; i++)
-		{
-			this->push(elements[i]);
+		while(!reversed.is_empty()){
+			this->push(reversed.pop());
 		}
 	}
 
@@ -79,7 +74,6 @@ public Object pop() throws EmptyStackException {
 		T poppedData = temp->data; // Get the data of the top node
 		top = top->next;		   // Move the top pointer to the next node
 		delete temp;			   // Free the memory of the old top node
-		this->count--;			   // update count
 		return poppedData; // Return the popped data
 	}
 
@@ -96,7 +90,6 @@ public void push(Object ob) {
 		newNode->data = ob;			// Set the data
 		newNode->next = top;		// Link the new node to the current top
 		top = newNode;				// Update the top pointer
-		this->count++;				// update count
 	}
 
 	/**
