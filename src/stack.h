@@ -108,20 +108,19 @@ public static void reverseQ(Queue q) {
 }
 ```
 	 */
-	void reverseQ(std::queue<T> &q)
+	static void reverseQ(std::queue<T> &q)
 	{
-		Stack stack;
-		int size = q.size(); // ensures only process elements from q and do not touch any elements in stack
-
-		// Transfer all elements from the queue to the stack
+		Stack stack; 
+		
+		// Transfer all elements from the q to the stack
 		while (!q.empty())
 		{
 			stack.push(q.front());
 			q.pop();
 		}
 
-		// Transfer elements back to the queue in reversed order
-		for (int i = 0; i < size; i++)
+		// Transfer all elements from stack to q
+		while (!stack.is_empty())
 		{
 			q.push(stack.pop());
 		}
